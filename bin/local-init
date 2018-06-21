@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -e
+
+readonly PARENT_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd -P)
+readonly APP_ROOT=$(cd $(dirname "$PARENT_DIR") && pwd -P)
+
+main()
+{
+  (
+    # Make sure script is running from the main application directory
+    cd $APP_ROOT
+
+    # Build docker images
+    docker-compose build
+
+    # Install dependencies
+    docker-compose run algorithms composer install
+  )
+}
+
+# Execute main functionality
+main

@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  algorithms:
+    container_name: algorithms
+    build: .
+    volumes:
+      - ${PWD}:/usr/src
